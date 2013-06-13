@@ -14,6 +14,11 @@ s@\([^/?]*\)\(\.php\)@\x1b[0;36m\1\x1b[0m\2@
 # py
 s@\([^/?]*\)\(\.py\)@\x1b[0;36m\1\x1b[0m\2@
 s/\(line\) \([0-9]\+\)/\x1b[0;31m\1 \2\x1b[0m/
+s/ \(INFO\) / \x1b[0;34m\1\x1b[0m /
+s/ \(WARNING\) / \x1b[0;32m\1\x1b[0m /
+s/ \(ERROR\) / \x1b[0;33m\1\x1b[0m /
+s/ \(DEBUG\) / \x1b[0;31m\1\x1b[0m /
+
 # example
 s@\/\(admin\)/@/\x1b[0;31m\1\x1b[0m/@
 
