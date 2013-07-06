@@ -34,6 +34,9 @@ s@ \(no\|in\) @ \x1b[1;35m\1\x1b[0m @g
 s/\(BEGIN\|SELECT\|FROM\|WHERE\|LIMIT\|AS\) /\x1b[0;35m\1\x1b[0m /g
 s/\(DELETE\) / \x1b[0;31m\1\x1b[0m /ig
 
+# command args
+s@\([\^\[\ \t]\)\(-\+\w\+\)@\1\x1b[0;35m\2\x1b[0m@g
+
 # example
 s@\/\(admin\)/@/\x1b[0;31m\1\x1b[0m/@
 
