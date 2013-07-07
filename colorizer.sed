@@ -1,54 +1,62 @@
 #!/bin/sed -f
 
 # http status code
-s/\(HTTP\/1..\"\) \(2[0-9][0-9]\) /\1 {{BLUE}}\2{{RESET}} /
-s/\(HTTP\/1..\"\) \(3[0-9][0-9]\) /\1 {{GREEN}}\2{{RESET}} /
-s/\(HTTP\/1..\"\) \(4[0-9][0-9]\) /\1 {{YELLOW}}\2{{RESET}} /
-s/\(HTTP\/1..\"\) \(5[0-9][0-9]\) /\1 {{RED}}\2{{RESET}} /
+s/\(HTTP\/1..\"\) \(2[0-9][0-9]\) /\1 {{blue}}\2{{reset}} /
+s/\(HTTP\/1..\"\) \(3[0-9][0-9]\) /\1 {{green}}\2{{reset}} /
+s/\(HTTP\/1..\"\) \(4[0-9][0-9]\) /\1 {{yellow}}\2{{reset}} /
+s/\(HTTP\/1..\"\) \(5[0-9][0-9]\) /\1 {{red}}\2{{reset}} /
 
 # ip address
-s/\([0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\)/{{CYAN}}\1{{RESET}}/g
+s/\([0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\)/{{cyan}}\1{{reset}}/g
 
 # symbols
-s@\([()\@=,'":<>&*?~]\)@{{CYAN}}\1{{RESET}}@g
+s@\([()\@=,'":<>&*?~]\)@{{cyan}}\1{{reset}}@g
 # date-time
-s/^\([0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\}\)/{{CYAN}}\1{{RESET}}/
-s/ \([0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\}\)/ {{CYAN}}\1{{RESET}}/
+s/^\([0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\}\)/{{cyan}}\1{{reset}}/
+s/ \([0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\}\)/ {{cyan}}\1{{reset}}/
 
 # php
-s@\([^/?]*\)\(\.php\)@{{CYAN}}\1{{RESET}}\2@
-s/\(does not exist.*\)\(favicon.ico\)/\1{{BLUE}}\2{{RESET}}/
+s@\([^/?]*\)\(\.php\)@{{cyan}}\1{{reset}}\2@
+s/\(does not exist.*\)\(favicon.ico\)/\1{{blue}}\2{{reset}}/
 
 # py
-s@\([^/?]*\)\(\.py\)@{{CYAN}}\1{{RESET}}\2@
-s/\([Ll]ine\) \([0-9]\+\)/{{RED}}\1 \2{{RESET}}/
-s/ \(INFO\) / {{BLUE}}\1{{RESET}} /
-s/ \(WARNING\) / {{GREEN}}\1{{RESET}} /
-s/\(ERROR\)/{{YELLOW}}\1{{RESET}}/i
-s/ \(DEBUG\) / {{RED}}\1{{RESET}} /
-s@\(File\)@{{MAGENTA}}\1{{RESET}}@
-s@\([Tt]raceback\)@{{MAGENTA}}\1{{RESET}}@
-s@\(dist-packages\)@{{MAGENTA}}\1{{RESET}}@
-s@ \(no\|in\) @ {{MAGENTA}}\1{{RESET}} @g
+s@\([^/?]*\)\(\.py\)@{{cyan}}\1{{reset}}\2@
+s/\([Ll]ine\) \([0-9]\+\)/{{red}}\1 \2{{reset}}/
+s/ \(INFO\) / {{blue}}\1{{reset}} /
+s/ \(WARNING\) / {{green}}\1{{reset}} /
+s/\(ERROR\)/{{yellow}}\1{{reset}}/i
+s/ \(DEBUG\) / {{red}}\1{{reset}} /
+s@\(File\)@{{magenta}}\1{{reset}}@
+s@\([Tt]raceback\)@{{magenta}}\1{{reset}}@
+s@\(dist-packages\)@{{magenta}}\1{{reset}}@
+s@ \(no\|in\) @ {{magenta}}\1{{reset}} @g
 
 # sql
-s/\(BEGIN\|SELECT\|FROM\|WHERE\|LIMIT\|AS\|CREATE\) /{{MAGENTA}}\1{{RESET}} /ig
-s/\(DELETE\) /{{RED}}\1{{RESET}} /ig
+s/\(BEGIN\|SELECT\|FROM\|WHERE\|LIMIT\|AS\|CREATE\) /{{magenta}}\1{{reset}} /ig
+s/\(DELETE\) /{{red}}\1{{reset}} /ig
 
 # command args
-s@\([\^\[\ \t]\)\(-\+\w\+\)@\1{{CYAN}}\2{{RESET}}@g
+s@\([\^\[\ \t]\)\(-\+\w\+\)@\1{{cyan}}\2{{reset}}@g
 
 # example
-s@\/\(admin\)/@/{{RED}}\1{{RESET}}/@
+s@\/\(admin\)/@/{{red}}\1{{reset}}/@
 
 # replace variable colors
-s@{{RED}}@\x1b[0;31m@g
-s@{{GREEN}}@\x1b[0;32m@g
-s@{{YELLOW}}@x1b[0;33m@g
-s@{{BLUE}}@\x1b[0;34m@g
-s@{{MAGENTA}}@\x1b[0;35m@g
-s@{{CYAN}}@\x1b[0;36m@g
-s@{{RESET}}@\x1b[0m@g
+s@{{red}}@\x1b[0;31m@g
+s@{{green}}@\x1b[0;32m@g
+s@{{yellow}}@\x1b[0;33m@g
+s@{{blue}}@\x1b[0;34m@g
+s@{{magenta}}@\x1b[0;35m@g
+s@{{cyan}}@\x1b[0;36m@g
+
+s@{{RED}}@\x1b[1;31m@g
+s@{{GREEN}}@\x1b[1;32m@g
+s@{{YELLOW}}@\x1b[1;33m@g
+s@{{BLUE}}@\x1b[1;34m@g
+s@{{MAGENTA}}@\x1b[1;35m@g
+s@{{CYAN}}@\x1b[1;36m@g
+
+s@{{reset}}@\x1b[0m@g
 
 ## style
 # reset     [0m  
